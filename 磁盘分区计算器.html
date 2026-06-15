@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>整数磁盘分区计算器</title>
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --border-color: #e8e8e8;
+            --text-main: #333;
+            --text-muted: #666;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 1100px;
+            max-width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a5568;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: stretch; 
+        }
+
+        .left-col, .right-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .card:last-child {
+            margin-bottom: 0;
+            flex-grow: 1; 
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            color: #555;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dcdfe6;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        /* 强制单行的关键样式 */
+        .quick-buttons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 6px;
+            margin-top: 15px;
+            flex-wrap: nowrap; 
+        }
+
+        .btn {
+            flex: 1;
+            padding: 7px 0;
+            border: 1px solid #dcdfe6;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #606266;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            background-color: #f5f7fa;
+            border-color: #c0c4cc;
+        }
+
+        .info-section p, .info-section li {
+            font-size: 14px;
+            color: #5e6d82;
+            line-height: 1.8;
+        }
+
+        .step-box {
+            background-color: #fafafa;
+            border: 1px solid #f0f0f0;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .result-main {
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        .result-value {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .calc-steps ol {
+            padding-left: 18px;
+            font-size: 14px;
+            color: #606266;
+            line-height: 2.2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>整数磁盘分区计算器</h1>
+
+    <div class="main-layout">
+        <div class="left-col">
+            <div class="card">
+                <div class="card-title">分区设置</div>
+                <label style="display:block; margin-bottom:10px; font-size:14px; color:#666;">期望的分区大小 (GB):</label>
+                <input type="number" id="gbInput" value="0" min="0" oninput="calculate()">
+                
+                <!-- 这里是强制一行的按钮 -->
+                <div class="quick-buttons">
+                    <button class="btn" onclick="setGB(10)">10GB</button>
+                    <button class="btn" onclick="setGB(20)">20GB</button>
+                    <button class="btn" onclick="setGB(30)">30GB</button>
+                    <button class="btn" onclick="setGB(50)">50GB</button>
+                    <button class="btn" onclick="setGB(100)">100GB</button>
+                    <button class="btn" onclick="setGB(500)">500GB</button>
+                    <button class="btn" onclick="setGB(1024)">1TB</button>
+                </div>
+            </div>
+
+            <div class="card info-section">
+                <div class="card-title">计算原理说明</div>
+                <p>整数硬盘的分区需按完整柱面划分，典型硬盘参数如下：</p>
+                <ul style="padding-left: 20px;">
+                    <li>每扇区：512字节</li>
+                    <li>每磁道扇区数：63</li>
+                    <li>磁头数：255</li>
+                </ul>
+                <p><strong>每柱面大小：</strong> 512 × 255 × 63 ≈ 7.844238 MB</p>
+
+                <div class="step-box">
+                    <p style="margin-top:0;"><strong>计算步骤：</strong></p>
+                    <ul style="list-style: none; padding-left: 0; font-size: 13px; margin-bottom:0;">
+                        <li>- 计算所需柱面数 = (期望GB × 1024) / 7.84423828125</li>
+                        <li>- 将柱面数向上取整</li>
+                        <li>- 计算实际分区大小 = 柱面数 × 7.84423828125 MB</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-col">
+            <div class="card result-main">
+                <div style="color:#909399; font-size:14px;">整数分区应设置为</div>
+                <div class="result-value"><span id="finalResult">0</span> MB</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">计算结果详情</div>
+                <div class="detail-row"><span>实际分区大小:</span><span id="detailRealMB">0 MB</span></div>
+                <div class="detail-row"><span>所需柱面数:</span><span id="detailCylinders">0</span></div>
+                <div class="detail-row"><span>实际分区大小:</span><span id="detailRealMB2">0 MB</span></div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">计算步骤：</div>
+                <div class="calc-steps">
+                    <ol>
+                        <li>期望大小: <span id="step1">0 GB = 0 MB</span></li>
+                        <li>理论柱面数: <span id="step3">0.000000</span></li>
+                        <li>实际柱面数: <span id="step4">0</span></li>
+                        <li>理论结果: <span id="step5">0.000000 MB</span></li>
+                        <li>最终向上取整: <span id="step6">0 MB</span></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const CYL = 7.84423828125;
+    function setGB(v) { document.getElementById('gbInput').value = v; calculate(); }
+    function calculate() {
+        const gb = parseFloat(document.getElementById('gbInput').value) || 0;
+        const targetMB = gb * 1024;
+        const thCyl = targetMB / CYL;
+        const actCyl = Math.ceil(thCyl);
+        const realMB = actCyl * CYL;
+        const finalMB = Math.ceil(realMB);
+
+        document.getElementById('finalResult').innerText = finalMB.toLocaleString();
+        document.getElementById('detailRealMB').innerText = realMB.toFixed(2) + " MB";
+        document.getElementById('detailCylinders').innerText = actCyl.toLocaleString();
+        document.getElementById('detailRealMB2').innerText = finalMB.toLocaleString() + " MB";
+        document.getElementById('step1').innerText = gb + " GB = " + targetMB.toLocaleString() + " MB";
+        document.getElementById('step3').innerText = thCyl.toFixed(6);
+        document.getElementById('step4').innerText = actCyl.toLocaleString();
+        document.getElementById('step5').innerText = realMB.toFixed(6) + " MB";
+        document.getElementById('step6').innerText = finalMB.toLocaleString() + " MB";
+    }
+    calculate();
+</script>
+</body>
+</html>
