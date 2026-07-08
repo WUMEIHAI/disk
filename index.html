@@ -1,245 +1,482 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>整数磁盘分区计算器</title>
+    <title>整数磁盘分区计算器 - 专业版</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 自定义配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#64748b',
+                        success: '#10b981',
+                        background: '#f8fafc',
+                        card: '#ffffff'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --bg-color: #f0f2f5;
-            --card-bg: #ffffff;
-            --border-color: #e8e8e8;
-            --text-main: #333;
-            --text-muted: #666;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
+            background-color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
         }
-
-        .container {
-            width: 1100px;
-            max-width: 100%;
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
         }
-
-        h1 {
-            text-align: center;
-            color: #4a5568;
-            font-size: 24px;
-            margin-bottom: 30px;
+        .input-group:focus-within label {
+            color: #3b82f6;
         }
-
-        .main-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            align-items: stretch; 
+        .input-group:focus-within i {
+            color: #3b82f6;
         }
-
-        .left-col, .right-col {
-            display: flex;
-            flex-direction: column;
+        /* 动画过渡 */
+        .transition-all-300 {
+            transition: all 0.3s ease-in-out;
         }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 20px;
+        .result-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
         }
-
-        .card:last-child {
-            margin-bottom: 0;
-            flex-grow: 1; 
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        .card-title {
-            font-size: 17px;
-            font-weight: bold;
-            margin-bottom: 18px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-            color: #555;
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; 
         }
-
-        input[type="number"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #dcdfe6;
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
             border-radius: 4px;
-            font-size: 16px;
-            box-sizing: border-box;
         }
-
-        /* 强制单行的关键样式 */
-        .quick-buttons {
-            display: flex;
-            justify-content: flex-start;
-            gap: 6px;
-            margin-top: 15px;
-            flex-wrap: nowrap; 
-        }
-
-        .btn {
-            flex: 1;
-            padding: 7px 0;
-            border: 1px solid #dcdfe6;
-            background: #fff;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 13px;
-            color: #606266;
-            text-align: center;
-            white-space: nowrap;
-        }
-
-        .btn:hover {
-            background-color: #f5f7fa;
-            border-color: #c0c4cc;
-        }
-
-        .info-section p, .info-section li {
-            font-size: 14px;
-            color: #5e6d82;
-            line-height: 1.8;
-        }
-
-        .step-box {
-            background-color: #fafafa;
-            border: 1px solid #f0f0f0;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 15px;
-        }
-
-        .result-main {
-            text-align: center;
-            padding: 35px 20px;
-        }
-
-        .result-value {
-            font-size: 32px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        .calc-steps ol {
-            padding-left: 18px;
-            font-size: 14px;
-            color: #606266;
-            line-height: 2.2;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
         }
     </style>
 </head>
-<body>
+<body class="text-slate-700 min-h-screen flex flex-col">
 
-<div class="container">
-    <h1>整数磁盘分区计算器</h1>
+    <!-- 头部导航 -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-primary text-white p-2 rounded-lg">
+                    <i class="fa-solid fa-hard-drive"></i>
+                </div>
+                <h1 class="text-xl font-bold text-slate-800 tracking-tight">整数磁盘分区计算器</h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors" title="切换主题（演示）">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="https://github.com" target="_blank" class="text-slate-400 hover:text-primary transition-colors">
+                    <i class="fa-brands fa-github text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </header>
 
-    <div class="main-layout">
-        <div class="left-col">
-            <div class="card">
-                <div class="card-title">分区设置</div>
-                <label style="display:block; margin-bottom:10px; font-size:14px; color:#666;">期望的分区大小 (GB):</label>
-                <input type="number" id="gbInput" value="0" min="0" oninput="calculate()">
+    <!-- 主内容区域 -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-6xl">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- 左侧：输入与控制区 (占5列) -->
+            <div class="lg:col-span-5 space-y-6">
                 
-                <!-- 这里是强制一行的按钮 -->
-                <div class="quick-buttons">
-                    <button class="btn" onclick="setGB(10)">10GB</button>
-                    <button class="btn" onclick="setGB(20)">20GB</button>
-                    <button class="btn" onclick="setGB(30)">30GB</button>
-                    <button class="btn" onclick="setGB(50)">50GB</button>
-                    <button class="btn" onclick="setGB(100)">100GB</button>
-                    <button class="btn" onclick="setGB(500)">500GB</button>
-                    <button class="btn" onclick="setGB(1024)">1TB</button>
+                <!-- 输入卡片 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 transition-all-300 hover:shadow-md">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-semibold text-slate-800">
+                            <i class="fa-solid fa-sliders mr-2 text-primary"></i>分区设置
+                        </h2>
+                        <span class="text-xs font-medium px-2 py-1 bg-blue-50 text-primary rounded-full">CHS模式</span>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- 输入框 -->
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-slate-500 mb-2 transition-colors">期望分区大小 (GB)</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fa-solid fa-database text-slate-400 transition-colors"></i>
+                                </div>
+                                <input type="number" id="gbInput" 
+                                    class="block w-full pl-10 pr-12 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-lg font-medium text-slate-700 placeholder-slate-300" 
+                                    placeholder="输入整数..."
+                                    oninput="handleInput(this.value)">
+                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <span class="text-slate-400 font-medium">GB</span>
+                                </div>
+                            </div>
+                            <p class="mt-2 text-xs text-slate-400" id="inputHint">请输入正整数，支持小数自动取整</p>
+                        </div>
+
+                        <!-- 快捷按钮 -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-500 mb-3">常用规格快捷选择</label>
+                            <div class="grid grid-cols-4 gap-2">
+                                <button onclick="setGB(10)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">10 GB</button>
+                                <button onclick="setGB(20)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">20 GB</button>
+                                <button onclick="setGB(30)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">30 GB</button>
+                                <button onclick="setGB(50)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">50 GB</button>
+                                <button onclick="setGB(100)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">100 GB</button>
+                                <button onclick="setGB(200)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">200 GB</button>
+                                <button onclick="setGB(500)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">500 GB</button>
+                                <button onclick="setGB(1024)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">1 TB</button>
+                            </div>
+                        </div>
+                        
+                        <!-- 操作按钮 -->
+                        <div class="pt-4 flex gap-3">
+                            <button onclick="calculate()" class="flex-1 bg-primary hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-blue-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+                                <i class="fa-solid fa-calculator mr-2"></i>立即计算
+                            </button>
+                            <button onclick="resetForm()" class="px-4 py-3 bg-white border border-slate-200 text-slate-600 font-medium rounded-xl hover:bg-slate-50 transition-colors" title="重置">
+                                <i class="fa-solid fa-rotate-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 原理说明卡片 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                    <h3 class="text-md font-semibold text-slate-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-circle-info mr-2 text-secondary"></i>计算原理 (CHS)
+                    </h3>
+                    <div class="space-y-3 text-sm text-slate-600">
+                        <p>传统硬盘分区需对齐柱面（Cylinder），以确保兼容性和性能。</p>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 font-mono text-xs space-y-1">
+                            <div class="flex justify-between"><span>每扇区字节:</span> <span class="font-bold">512 Bytes</span></div>
+                            <div class="flex justify-between"><span>每磁道扇区:</span> <span class="font-bold">63 Sectors</span></div>
+                            <div class="flex justify-between"><span>磁头数:</span> <span class="font-bold">255 Heads</span></div>
+                            <div class="border-t border-slate-200 my-1"></div>
+                            <div class="flex justify-between text-primary">
+                                <span>单柱面大小:</span> 
+                                <span class="font-bold">≈ 7.844238 MB</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-2">
+                            * 公式: MB = GB × 1024<br>
+                            * 柱面数 = ceil(MB / 7.844238)<br>
+                            * 最终MB = 柱面数 × 7.844238
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="card info-section">
-                <div class="card-title">计算原理说明</div>
-                <p>整数硬盘的分区需按完整柱面划分，典型硬盘参数如下：</p>
-                <ul style="padding-left: 20px;">
-                    <li>每扇区：512字节</li>
-                    <li>每磁道扇区数：63</li>
-                    <li>磁头数：255</li>
-                </ul>
-                <p><strong>每柱面大小：</strong> 512 × 255 × 63 ≈ 7.844238 MB</p>
+            <!-- 右侧：结果与历史区 (占7列) -->
+            <div class="lg:col-span-7 space-y-6">
+                
+                <!-- 结果展示卡片 -->
+                <div id="resultCard" class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hidden transition-all-300">
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 border-b border-blue-100">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h2 class="text-lg font-semibold text-slate-800">计算结果</h2>
+                                <p class="text-sm text-slate-500 mt-1">基于标准 CHS 算法生成的精确分区值</p>
+                            </div>
+                            <div class="bg-white p-2 rounded-lg shadow-sm border border-blue-100">
+                                <i class="fa-solid fa-check-circle text-success text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex flex-col md:flex-row gap-6 items-center justify-center mb-8">
+                            <div class="text-center">
+                                <p class="text-sm text-slate-500 mb-1">您输入的期望值</p>
+                                <div class="text-2xl font-bold text-slate-700"><span id="resInput">0</span> <span class="text-base font-normal text-slate-400">GB</span></div>
+                            </div>
+                            <div class="hidden md:block text-slate-300">
+                                <i class="fa-solid fa-arrow-right text-2xl"></i>
+                            </div>
+                            <div class="text-center relative">
+                                <div class="absolute -top-3 -right-3">
+                                    <span class="flex h-6 w-6">
+                                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
+                                      <span class="relative inline-flex rounded-full h-6 w-6 bg-success"></span>
+                                    </span>
+                                </div>
+                                <p class="text-sm text-primary font-medium mb-1">建议分区大小</p>
+                                <div class="text-4xl font-extrabold text-primary tracking-tight"><span id="resOutput">0</span> <span class="text-xl font-medium text-slate-400">MB</span></div>
+                            </div>
+                        </div>
 
-                <div class="step-box">
-                    <p style="margin-top:0;"><strong>计算步骤：</strong></p>
-                    <ul style="list-style: none; padding-left: 0; font-size: 13px; margin-bottom:0;">
-                        <li>- 计算所需柱面数 = (期望GB × 1024) / 7.84423828125</li>
-                        <li>- 将柱面数向上取整</li>
-                        <li>- 计算实际分区大小 = 柱面数 × 7.84423828125 MB</li>
-                    </ul>
+                        <!-- 详细步骤 -->
+                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                            <h4 class="text-sm font-semibold text-slate-700 mb-3 uppercase tracking-wider">计算过程详解</h4>
+                            <ol class="space-y-3 text-sm text-slate-600 list-decimal list-inside marker:text-primary marker:font-bold">
+                                <li id="step1">将 GB 转换为 MB: <span class="font-mono bg-white px-1 rounded border border-slate-200">0 × 1024 = 0 MB</span></li>
+                                <li id="step2">计算所需柱面数: <span class="font-mono bg-white px-1 rounded border border-slate-200">ceil(0 / 7.844238) = 0</span></li>
+                                <li id="step3">反推精确 MB 值: <span class="font-mono bg-white px-1 rounded border border-slate-200 text-primary font-bold">0 × 7.844238 ≈ 0 MB</span></li>
+                            </ol>
+                        </div>
+
+                        <div class="mt-6 flex justify-end">
+                            <button onclick="copyResult()" class="text-sm text-primary hover:text-blue-700 font-medium flex items-center gap-2 transition-colors">
+                                <i class="fa-regular fa-copy"></i> 复制结果数值
+                            </button>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- 初始状态占位图 -->
+                <div id="emptyState" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-12 flex flex-col items-center justify-center text-center h-full min-h-[400px]">
+                    <div class="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-calculator text-4xl text-primary opacity-50"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">等待输入</h3>
+                    <p class="text-slate-500 max-w-xs mx-auto">在左侧输入您想要的分区大小（GB），系统将自动为您计算符合整数分区规则的 MB 值。</p>
+                </div>
+
+                <!-- 历史记录 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-md font-semibold text-slate-800">
+                            <i class="fa-solid fa-clock-rotate-left mr-2 text-secondary"></i>最近计算记录
+                        </h3>
+                        <button onclick="clearHistory()" class="text-xs text-red-400 hover:text-red-600 transition-colors">清空记录</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left text-slate-600">
+                            <thead class="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-100">
+                                <tr>
+                                    <th scope="col" class="px-4 py-3 rounded-l-lg">时间</th>
+                                    <th scope="col" class="px-4 py-3">输入 (GB)</th>
+                                    <th scope="col" class="px-4 py-3">结果 (MB)</th>
+                                    <th scope="col" class="px-4 py-3 rounded-r-lg text-right">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyList" class="divide-y divide-slate-100">
+                                <!-- 动态插入 -->
+                                <tr class="bg-white hover:bg-slate-50 transition-colors">
+                                    <td colspan="4" class="px-4 py-8 text-center text-slate-400 italic">暂无历史记录</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
+    </main>
 
-        <div class="right-col">
-            <div class="card result-main">
-                <div style="color:#909399; font-size:14px;">整数分区应设置为</div>
-                <div class="result-value"><span id="finalResult">0</span> MB</div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">计算结果详情</div>
-                <div class="detail-row"><span>实际分区大小:</span><span id="detailRealMB">0 MB</span></div>
-                <div class="detail-row"><span>所需柱面数:</span><span id="detailCylinders">0</span></div>
-                <div class="detail-row"><span>实际分区大小:</span><span id="detailRealMB2">0 MB</span></div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">计算步骤：</div>
-                <div class="calc-steps">
-                    <ol>
-                        <li>期望大小: <span id="step1">0 GB = 0 MB</span></li>
-                        <li>理论柱面数: <span id="step3">0.000000</span></li>
-                        <li>实际柱面数: <span id="step4">0</span></li>
-                        <li>理论结果: <span id="step5">0.000000 MB</span></li>
-                        <li>最终向上取整: <span id="step6">0 MB</span></li>
-                    </ol>
-                </div>
+    <!-- 页脚 -->
+    <footer class="bg-white border-t border-slate-200 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-slate-500 text-sm">© 2026 整数磁盘分区计算器. All rights reserved.</p>
+            <div class="flex space-x-6 text-sm text-slate-500">
+                <a href="#" class="hover:text-primary">使用帮助</a>
+                <a href="#" class="hover:text-primary">隐私政策</a>
+                <a href="#" class="hover:text-primary">联系我们</a>
             </div>
         </div>
-    </div>
-</div>
+    </footer>
 
-<script>
-    const CYL = 7.84423828125;
-    function setGB(v) { document.getElementById('gbInput').value = v; calculate(); }
-    function calculate() {
-        const gb = parseFloat(document.getElementById('gbInput').value) || 0;
-        const targetMB = gb * 1024;
-        const thCyl = targetMB / CYL;
-        const actCyl = Math.ceil(thCyl);
-        const realMB = actCyl * CYL;
-        const finalMB = Math.ceil(realMB);
+    <!-- Toast 提示容器 -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2"></div>
 
-        document.getElementById('finalResult').innerText = finalMB.toLocaleString();
-        document.getElementById('detailRealMB').innerText = realMB.toFixed(2) + " MB";
-        document.getElementById('detailCylinders').innerText = actCyl.toLocaleString();
-        document.getElementById('detailRealMB2').innerText = finalMB.toLocaleString() + " MB";
-        document.getElementById('step1').innerText = gb + " GB = " + targetMB.toLocaleString() + " MB";
-        document.getElementById('step3').innerText = thCyl.toFixed(6);
-        document.getElementById('step4').innerText = actCyl.toLocaleString();
-        document.getElementById('step5').innerText = realMB.toFixed(6) + " MB";
-        document.getElementById('step6').innerText = finalMB.toLocaleString() + " MB";
-    }
-    calculate();
-</script>
+    <script>
+        // 常量定义
+        const CYLINDER_SIZE_MB = 7.844238; // 512 * 255 * 63 / 1024 / 1024
+        
+        // DOM 元素
+        const gbInput = document.getElementById('gbInput');
+        const resultCard = document.getElementById('resultCard');
+        const emptyState = document.getElementById('emptyState');
+        const historyList = document.getElementById('historyList');
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            loadHistory();
+            // 如果有上次输入，恢复它
+            const lastInput = localStorage.getItem('last_gb_input');
+            if(lastInput) {
+                gbInput.value = lastInput;
+            }
+        });
+
+        // 处理输入
+        function handleInput(val) {
+            // 简单的防抖可以加在这里，但目前直接计算体验更好
+            if(val !== '') {
+                localStorage.setItem('last_gb_input', val);
+            }
+        }
+
+        // 设置GB值
+        function setGB(val) {
+            gbInput.value = val;
+            calculate();
+            showToast(`已快速设置: ${val} GB`, 'info');
+        }
+
+        // 重置表单
+        function resetForm() {
+            gbInput.value = '';
+            resultCard.classList.add('hidden');
+            emptyState.classList.remove('hidden');
+            localStorage.removeItem('last_gb_input');
+            showToast('已重置', 'info');
+        }
+
+        // 核心计算逻辑
+        function calculate() {
+            const gbVal = parseFloat(gbInput.value);
+            
+            if (isNaN(gbVal) || gbVal <= 0) {
+                showToast('请输入有效的正数', 'error');
+                return;
+            }
+
+            // 1. GB 转 MB
+            const totalMB = gbVal * 1024;
+            
+            // 2. 计算柱面数 (向上取整)
+            const cylinders = Math.ceil(totalMB / CYLINDER_SIZE_MB);
+            
+            // 3. 计算最终 MB
+            const finalMB = (cylinders * CYLINDER_SIZE_MB).toFixed(2); // 保留两位小数显示，实际分区通常取整
+            
+            // 更新UI
+            updateResultUI(gbVal, finalMB, totalMB, cylinders);
+            
+            // 添加到历史
+            addToHistory(gbVal, finalMB);
+            
+            // 显示结果区
+            emptyState.classList.add('hidden');
+            resultCard.classList.remove('hidden');
+            
+            // 滚动到结果区 (移动端体验优化)
+            if(window.innerWidth < 1024) {
+                resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // 更新结果界面
+        function updateResultUI(inputGB, outputMB, rawMB, cylCount) {
+            document.getElementById('resInput').textContent = inputGB;
+            document.getElementById('resOutput').textContent = outputMB;
+            
+            // 更新步骤详情
+            document.getElementById('step1').innerHTML = `将 GB 转换为 MB: <span class="font-mono bg-white px-1 rounded border border-slate-200">${inputGB} × 1024 = ${rawMB.toFixed(2)} MB</span>`;
+            document.getElementById('step2').innerHTML = `计算所需柱面数: <span class="font-mono bg-white px-1 rounded border border-slate-200">ceil(${rawMB.toFixed(2)} / 7.844238) = ${cylCount}</span>`;
+            document.getElementById('step3').innerHTML = `反推精确 MB 值: <span class="font-mono bg-white px-1 rounded border border-slate-200 text-primary font-bold">${cylCount} × 7.844238 ≈ ${outputMB} MB</span>`;
+        }
+
+        // 复制结果
+        function copyResult() {
+            const val = document.getElementById('resOutput').textContent;
+            navigator.clipboard.writeText(val).then(() => {
+                showToast('结果已复制到剪贴板', 'success');
+            }).catch(err => {
+                showToast('复制失败', 'error');
+            });
+        }
+
+        // 历史记录管理
+        function addToHistory(gb, mb) {
+            let history = JSON.parse(localStorage.getItem('partition_history') || '[]');
+            const newItem = {
+                id: Date.now(),
+                time: new Date().toLocaleTimeString(),
+                gb: gb,
+                mb: mb
+            };
+            
+            // 保持最近10条
+            history.unshift(newItem);
+            if(history.length > 10) history.pop();
+            
+            localStorage.setItem('partition_history', JSON.stringify(history));
+            renderHistory(history);
+        }
+
+        function loadHistory() {
+            const history = JSON.parse(localStorage.getItem('partition_history') || '[]');
+            renderHistory(history);
+        }
+
+        function clearHistory() {
+            localStorage.removeItem('partition_history');
+            renderHistory([]);
+            showToast('历史记录已清空', 'info');
+        }
+
+        function renderHistory(history) {
+            if (history.length === 0) {
+                historyList.innerHTML = `
+                    <tr class="bg-white hover:bg-slate-50 transition-colors">
+                        <td colspan="4" class="px-4 py-8 text-center text-slate-400 italic">暂无历史记录</td>
+                    </tr>`;
+                return;
+            }
+
+            historyList.innerHTML = history.map(item => `
+                <tr class="bg-white hover:bg-slate-50 transition-colors group">
+                    <td class="px-4 py-3 font-mono text-xs text-slate-400">${item.time}</td>
+                    <td class="px-4 py-3 font-medium text-slate-700">${item.gb} GB</td>
+                    <td class="px-4 py-3 text-primary font-bold">${item.mb} MB</td>
+                    <td class="px-4 py-3 text-right">
+                        <button onclick="setGB(${item.gb})" class="text-slate-400 hover:text-primary transition-colors" title="重新计算">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Toast 提示系统
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            let icon = '<i class="fa-solid fa-info-circle"></i>';
+            let bgClass = 'bg-slate-800';
+            
+            if (type === 'success') {
+                icon = '<i class="fa-solid fa-check-circle"></i>';
+                bgClass = 'bg-green-600';
+            } else if (type === 'error') {
+                icon = '<i class="fa-solid fa-exclamation-circle"></i>';
+                bgClass = 'bg-red-600';
+            }
+
+            toast.className = `${bgClass} text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 transform transition-all duration-300 translate-y-10 opacity-0 min-w-[200px]`;
+            toast.innerHTML = `${icon} <span class="text-sm font-medium">${message}</span>`;
+            
+            container.appendChild(toast);
+            
+            // 动画进入
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-10', 'opacity-0');
+            });
+
+            // 自动移除
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // 主题切换（简单演示）
+        function toggleTheme() {
+            showToast('深色模式开发中...', 'info');
+        }
+    </script>
 </body>
 </html>
