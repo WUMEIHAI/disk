@@ -1,14 +1,14 @@
 
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh-CN" data-page-node-id="E73VSjiAV90hZ7i04ggAKk">
+<head data-page-node-id="PqEUzVv4hMUxYgvPQhd2W7">
+    <meta charset="UTF-8" data-page-node-id="XkSjSjkTEtVFRRMV7KMkbJ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="U2F7Y3SMWDQX45jolYD3kY">
     <title>整数磁盘分区计算器 - 专业版</title>
     <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入 Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" data-page-node-id="7tT7i2XIVHg3FVIIc8SUVF">
     <!-- 自定义配置 -->
     <script>
         tailwind.config = {
@@ -66,208 +66,180 @@
         }
     </style>
 </head>
-<body class="text-slate-700 min-h-screen flex flex-col">
+<body class="text-slate-700 min-h-screen flex flex-col" data-page-node-id="3kdKqemkCd9I7kaO8fHolo">
 
     <!-- 头部导航 -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="bg-primary text-white p-2 rounded-lg">
-                    <i class="fa-solid fa-hard-drive"></i>
+    <header class="bg-white shadow-sm sticky top-0 z-50" data-page-node-id="tBa4dEVXKCdjFlw8FUhxTH">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between" data-page-node-id="uI2mpNGFg4LF3oikwBWPOh">
+            <div class="flex items-center gap-3" data-page-node-id="a9FesxCXE2tBCSHmQoH1Xk">
+                <div class="bg-primary text-white p-2 rounded-lg" data-page-node-id="nHeoR3B01jGPKRRF0RLr5U">
+                    <i class="fa-solid fa-hard-drive" data-page-node-id="IdjGaIW7aObyi32JGVVeqf"></i>
                 </div>
-                <h1 class="text-xl font-bold text-slate-800 tracking-tight">整数磁盘分区计算器</h1>
+                <h1 class="text-xl font-bold text-slate-800 tracking-tight" data-page-node-id="Uqt0f9FCdih1dnlcOaD21k">整数磁盘分区计算器</h1>
             </div>
-            <div class="flex items-center gap-4">
-                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors" title="切换主题（演示）">
-                    <i class="fa-solid fa-moon"></i>
+            <div class="flex items-center gap-4" data-page-node-id="IlLBPsjx0JkBkXAlK5vv6T">
+                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors" title="切换主题（演示）" data-page-node-id="9KEBlcLp6voVxwEgeDvnpa">
+                    <i class="fa-solid fa-moon" data-page-node-id="1wxkpmm1E7CQlZOTeFifD9"></i>
                 </button>
-                <a href="https://github.com" target="_blank" class="text-slate-400 hover:text-primary transition-colors">
-                    <i class="fa-brands fa-github text-xl"></i>
+                <a href="https://github.com" target="_blank" class="text-slate-400 hover:text-primary transition-colors" data-page-node-id="Hf7RxfJ1yCOffhHofuoocc">
+                    <i class="fa-brands fa-github text-xl" data-page-node-id="HHwI5K8DG8SW5fQN2ptAal"></i>
                 </a>
             </div>
         </div>
     </header>
 
     <!-- 主内容区域 -->
-    <main class="flex-grow container mx-auto px-4 py-8 max-w-6xl">
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-6xl" data-page-node-id="paQWWYSDfixKhw4FypKiEg">
         
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8" data-page-node-id="DU8AqxPISMOBSGejSRIzG5">
             
             <!-- 左侧：输入与控制区 (占5列) -->
-            <div class="lg:col-span-5 space-y-6">
+            <div class="lg:col-span-5 space-y-6" data-page-node-id="PNYQj1DSTNqgB3GU1lOnGC">
                 
                 <!-- 输入卡片 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 transition-all-300 hover:shadow-md">
-                    <div class="flex items-center justify-between mb-6">
-                        <h2 class="text-lg font-semibold text-slate-800">
-                            <i class="fa-solid fa-sliders mr-2 text-primary"></i>分区设置
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 transition-all-300 hover:shadow-md" data-page-node-id="BhHHlIVKhGXypV0djL1wlg">
+                    <div class="flex items-center justify-between mb-6" data-page-node-id="1cGXHIBR1pNO6TqjnEtoEq">
+                        <h2 class="text-lg font-semibold text-slate-800" data-page-node-id="cTWxLclpPgThEk5kIYcpou">
+                            <i class="fa-solid fa-sliders mr-2 text-primary" data-page-node-id="DzA0nENsSPMgrufGgkhTXJ"></i>分区设置
                         </h2>
-                        <span class="text-xs font-medium px-2 py-1 bg-blue-50 text-primary rounded-full">CHS模式</span>
+                        <span class="text-xs font-medium px-2 py-1 bg-blue-50 text-primary rounded-full" data-page-node-id="MvyMHkX4d43YDwrWA5d4Oh">CHS模式</span>
                     </div>
 
-                    <div class="space-y-6">
+                    <div class="space-y-6" data-page-node-id="PxQyPdqa2U54vPpp33Sjz4">
                         <!-- 输入框 -->
-                        <div class="input-group">
-                            <label class="block text-sm font-medium text-slate-500 mb-2 transition-colors">期望分区大小 (GB)</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fa-solid fa-database text-slate-400 transition-colors"></i>
+                        <div class="input-group" data-page-node-id="9G3yjdzYAiCDhOJn5XJcET">
+                            <label class="block text-sm font-medium text-slate-500 mb-2 transition-colors" data-page-node-id="0ZZjxOkJ7z8DL5RyKbnHCj">期望分区大小 (GB)</label>
+                            <div class="relative" data-page-node-id="S1qZFMDrwuA05lDVzkOFD6">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" data-page-node-id="hzKyiaygQlAA9yfC45SE0H">
+                                    <i class="fa-solid fa-database text-slate-400 transition-colors" data-page-node-id="x3zXBDyxPcjhKTwTBf1xh9"></i>
                                 </div>
                                 <input type="number" id="gbInput" 
                                     class="block w-full pl-10 pr-12 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-lg font-medium text-slate-700 placeholder-slate-300" 
                                     placeholder="输入整数..."
-                                    oninput="handleInput(this.value)">
-                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                    <span class="text-slate-400 font-medium">GB</span>
+                                    oninput="handleInput(this.value)" data-page-node-id="1JkWR08GGXkLvzNhTxcfgd">
+                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none" data-page-node-id="IIovwMo68WI0iE7LMFnCxV">
+                                    <span class="text-slate-400 font-medium" data-page-node-id="iDslbENej7EhyWvARJMCnT">GB</span>
                                 </div>
                             </div>
-                            <p class="mt-2 text-xs text-slate-400" id="inputHint">请输入正整数，支持小数自动取整</p>
+                            <p class="mt-2 text-xs text-slate-400" id="inputHint" data-page-node-id="1mUXlL4bGHpTWaBkY2CXBP">请输入正整数，支持小数自动取整</p>
                         </div>
 
                         <!-- 快捷按钮 -->
-                        <div>
-                            <label class="block text-sm font-medium text-slate-500 mb-3">常用规格快捷选择</label>
-                            <div class="grid grid-cols-4 gap-2">
-                                <button onclick="setGB(10)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">10 GB</button>
-                                <button onclick="setGB(20)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">20 GB</button>
-                                <button onclick="setGB(30)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">30 GB</button>
-                                <button onclick="setGB(50)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">50 GB</button>
-                                <button onclick="setGB(100)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">100 GB</button>
-                                <button onclick="setGB(200)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">200 GB</button>
-                                <button onclick="setGB(500)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">500 GB</button>
-                                <button onclick="setGB(1024)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200">1 TB</button>
+                        <div data-page-node-id="40XdFN5zWkqYF7gZMBnANx">
+                            <label class="block text-sm font-medium text-slate-500 mb-3" data-page-node-id="Y7QCzSOb3En7c7zS4sEu6D">常用规格快捷选择</label>
+                            <div class="grid grid-cols-4 gap-2" data-page-node-id="16L93y40AjJ4wqTC9r7mYu">
+                                <button onclick="setGB(10)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200" data-page-node-id="KFaspeET1HFaubbXpunstq">10 GB</button>
+                                <button onclick="setGB(20)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200" data-page-node-id="eitlPQb1Fsjsd7zGtSNsFJ">20 GB</button>
+                                <button onclick="setGB(30)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200" data-page-node-id="A2XqCfBcOiQUeFTDw8xAXG">30 GB</button>
+                                <button onclick="setGB(50)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200" data-page-node-id="kFQly47kCfOXgTVFZmw9ik">50 GB</button>
+                                <button onclick="setGB(100)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200" data-page-node-id="ICvcS2dHTiV7J5mymDZjE1">100 GB</button>
+                                <button onclick="setGB(200)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200" data-page-node-id="GPgVA1XEdyjZTmf337FKc9">200 GB</button>
+                                <button onclick="setGB(500)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200" data-page-node-id="egmun6HOhxArBgluc3z1Eo">500 GB</button>
+                                <button onclick="setGB(1024)" class="quick-btn px-3 py-2 bg-slate-50 hover:bg-blue-50 hover:text-primary border border-slate-200 rounded-lg text-sm font-medium transition-all duration-200" data-page-node-id="zO4ulzSfFP9YfgpY30bqEL">1 TB</button>
                             </div>
                         </div>
                         
                         <!-- 操作按钮 -->
-                        <div class="pt-4 flex gap-3">
-                            <button onclick="calculate()" class="flex-1 bg-primary hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-blue-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
-                                <i class="fa-solid fa-calculator mr-2"></i>立即计算
+                        <div class="pt-4 flex gap-3" data-page-node-id="xDPU0PGFOD97sVXeFIDRPt">
+                            <button onclick="calculate()" class="flex-1 bg-primary hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-blue-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0" data-page-node-id="iCPfnSEda0zr9K4XJIe4z9">
+                                <i class="fa-solid fa-calculator mr-2" data-page-node-id="RSZeUS9tZJVpM0C3p4Al32"></i>立即计算
                             </button>
-                            <button onclick="resetForm()" class="px-4 py-3 bg-white border border-slate-200 text-slate-600 font-medium rounded-xl hover:bg-slate-50 transition-colors" title="重置">
-                                <i class="fa-solid fa-rotate-right"></i>
+                            <button onclick="resetForm()" class="px-4 py-3 bg-white border border-slate-200 text-slate-600 font-medium rounded-xl hover:bg-slate-50 transition-colors" title="重置" data-page-node-id="4dsDSZzNyyBOKXphQtuveI">
+                                <i class="fa-solid fa-rotate-right" data-page-node-id="fassWwSjBmV7lMsTcYZgFB"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- 原理说明卡片 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-                    <h3 class="text-md font-semibold text-slate-800 mb-4 flex items-center">
-                        <i class="fa-solid fa-circle-info mr-2 text-secondary"></i>计算原理 (CHS)
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6" data-page-node-id="rnYdB7F058l8HUENMpmdeu">
+                    <h3 class="text-md font-semibold text-slate-800 mb-4 flex items-center" data-page-node-id="XZGjfOsomFX4tFddFZ6xh4">
+                        <i class="fa-solid fa-circle-info mr-2 text-secondary" data-page-node-id="zzZ79OEaQ52oQF8mWXmrWj"></i>计算原理 (CHS)
                     </h3>
-                    <div class="space-y-3 text-sm text-slate-600">
-                        <p>传统硬盘分区需对齐柱面（Cylinder），以确保兼容性和性能。</p>
-                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 font-mono text-xs space-y-1">
-                            <div class="flex justify-between"><span>每扇区字节:</span> <span class="font-bold">512 Bytes</span></div>
-                            <div class="flex justify-between"><span>每磁道扇区:</span> <span class="font-bold">63 Sectors</span></div>
-                            <div class="flex justify-between"><span>磁头数:</span> <span class="font-bold">255 Heads</span></div>
-                            <div class="border-t border-slate-200 my-1"></div>
-                            <div class="flex justify-between text-primary">
-                                <span>单柱面大小:</span> 
-                                <span class="font-bold">≈ 7.844238 MB</span>
+                    <div class="space-y-3 text-sm text-slate-600" data-page-node-id="MyjGUvnYcWqoMM4mFA308T">
+                        <p data-page-node-id="yNCnb0yQNEbQQPcBC5Ammp">传统硬盘分区需对齐柱面（Cylinder），以确保兼容性和性能。</p>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 font-mono text-xs space-y-1" data-page-node-id="CGv6WJ19lJYDG7ZqVi6GpQ">
+                            <div class="flex justify-between" data-page-node-id="ajdKludQ61D9aKVFC2Nq0P"><span data-page-node-id="KuFfEN8XonalG3AxJczt5Z">每扇区字节:</span> <span class="font-bold" data-page-node-id="XNRDG3WJMYAhD5f9xOOb3r">512 Bytes</span></div>
+                            <div class="flex justify-between" data-page-node-id="WSWmPSq5FQHpycimIHXxpY"><span data-page-node-id="N78lbFeDATSK1SKIyPU6Ym">每磁道扇区:</span> <span class="font-bold" data-page-node-id="39Os4kBFyqPmoSjqe1lmVc">63 Sectors</span></div>
+                            <div class="flex justify-between" data-page-node-id="IlhpyJzTTnpXlyHd6miauQ"><span data-page-node-id="CUfplj73dwnUhdJ2aAm0oV">磁头数:</span> <span class="font-bold" data-page-node-id="ml9GLJlLrSE7U0bMJ9bsEc">255 Heads</span></div>
+                            <div class="border-t border-slate-200 my-1" data-page-node-id="vCp7LhAV17lEh1ATH0G95l"></div>
+                            <div class="flex justify-between text-primary" data-page-node-id="Av4HWKRogNVFOyZRgLHlSo">
+                                <span data-page-node-id="YQSjSIM3ENYG08FHbTLGKv">单柱面大小:</span> 
+                                <span class="font-bold" data-page-node-id="N41Ba8BzbH8iYNLWJuMn0Y">≈ 7.844238 MB</span>
                             </div>
                         </div>
-                        <p class="text-xs text-slate-400 mt-2">
-                            * 公式: MB = GB × 1024<br>
-                            * 柱面数 = ceil(MB / 7.844238)<br>
+                        <p class="text-xs text-slate-400 mt-2" data-page-node-id="ENBVFFZxQ7GkrQn8JwdkFo">
+                            * 公式: MB = GB × 1024<br data-page-node-id="Gra8UtQJavPQbDxO5BYKsv">
+                            * 柱面数 = ceil(MB / 7.844238)<br data-page-node-id="ZqkZI8oLmXhVptDHFYCEHd">
                             * 最终MB = 柱面数 × 7.844238
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- 右侧：结果与历史区 (占7列) -->
-            <div class="lg:col-span-7 space-y-6">
+            <!-- 右侧：结果展示区 (占7列) -->
+            <div class="lg:col-span-7 space-y-6" data-page-node-id="sDo0IiQTyq4gxSkD55YQO8">
                 
                 <!-- 结果展示卡片 -->
-                <div id="resultCard" class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hidden transition-all-300">
-                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 border-b border-blue-100">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h2 class="text-lg font-semibold text-slate-800">计算结果</h2>
-                                <p class="text-sm text-slate-500 mt-1">基于标准 CHS 算法生成的精确分区值</p>
+                <div id="resultCard" class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hidden transition-all-300" data-page-node-id="sOf38jgoNnMnlHKP3colAu">
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 border-b border-blue-100" data-page-node-id="ILAzldV4CXqVYA7DL4oHbu">
+                        <div class="flex justify-between items-start" data-page-node-id="bP7i3EcTNZfbENIp3Go0nq">
+                            <div data-page-node-id="FRnrcCzkt7woeNz4cMao94">
+                                <h2 class="text-lg font-semibold text-slate-800" data-page-node-id="Dq97uAof1YpKfngAyU0EAk">计算结果</h2>
+                                <p class="text-sm text-slate-500 mt-1" data-page-node-id="5nVLITPw3JjvBkrOa7RH9U">基于标准 CHS 算法生成的精确分区值</p>
                             </div>
-                            <div class="bg-white p-2 rounded-lg shadow-sm border border-blue-100">
-                                <i class="fa-solid fa-check-circle text-success text-xl"></i>
+                            <div class="bg-white p-2 rounded-lg shadow-sm border border-blue-100" data-page-node-id="jNZapS36bDlTGewHvRulUm">
+                                <i class="fa-solid fa-check-circle text-success text-xl" data-page-node-id="AeyzXSpVOWf7RRC5MF3M5b"></i>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="p-6">
-                        <div class="flex flex-col md:flex-row gap-6 items-center justify-center mb-8">
-                            <div class="text-center">
-                                <p class="text-sm text-slate-500 mb-1">您输入的期望值</p>
-                                <div class="text-2xl font-bold text-slate-700"><span id="resInput">0</span> <span class="text-base font-normal text-slate-400">GB</span></div>
+                    <div class="p-6" data-page-node-id="0QNjBhHAcJxtDw98Yokm5K">
+                        <div class="flex flex-col md:flex-row gap-6 items-center justify-center mb-8" data-page-node-id="WGqmuqzUZg3E7duvcjyB4l">
+                            <div class="text-center" data-page-node-id="dcT0D7ZAb6TBobN3UCqmdf">
+                                <p class="text-sm text-slate-500 mb-1" data-page-node-id="26wnFHDzng3WXyBdMJ05W4">您输入的期望值</p>
+                                <div class="text-2xl font-bold text-slate-700" data-page-node-id="9s5XnORq9JxTBaFGhtmKeM"><span id="resInput" data-page-node-id="Cf8SzT53mLMuO4ubXOmWY0">0</span> <span class="text-base font-normal text-slate-400" data-page-node-id="4GSAJ2Bg3s6UlpQXBpm1fp">GB</span></div>
                             </div>
-                            <div class="hidden md:block text-slate-300">
-                                <i class="fa-solid fa-arrow-right text-2xl"></i>
+                            <div class="hidden md:block text-slate-300" data-page-node-id="4YZipQunsZOtPnHjKJTMsf">
+                                <i class="fa-solid fa-arrow-right text-2xl" data-page-node-id="xJKvA53F694FEGq4nhDPXL"></i>
                             </div>
-                            <div class="text-center relative">
-                                <div class="absolute -top-3 -right-3">
-                                    <span class="flex h-6 w-6">
-                                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
-                                      <span class="relative inline-flex rounded-full h-6 w-6 bg-success"></span>
+                            <div class="text-center relative" data-page-node-id="3EfHBDV5OWPqYhWeAk4Ow5">
+                                <div class="absolute -top-3 -right-3" data-page-node-id="mXuiT7Fip8jr2JExNHs5ve">
+                                    <span class="flex h-6 w-6" data-page-node-id="FpdchlmWpVH3WFX6ujuzbX">
+                                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75" data-page-node-id="dhl79HEGbxlJbfFL1VwGp3"></span>
+                                      <span class="relative inline-flex rounded-full h-6 w-6 bg-success" data-page-node-id="g05Mj6M5YAV3zSOoXyAT3u"></span>
                                     </span>
                                 </div>
-                                <p class="text-sm text-primary font-medium mb-1">建议分区大小</p>
-                                <div class="text-4xl font-extrabold text-primary tracking-tight"><span id="resOutput">0</span> <span class="text-xl font-medium text-slate-400">MB</span></div>
+                                <p class="text-sm text-primary font-medium mb-1" data-page-node-id="lVAe6YKzIEkOFSEHvNKdht">建议分区大小</p>
+                                <div class="text-4xl font-extrabold text-primary tracking-tight" data-page-node-id="E7gbgZ5GqQOVBAx9k3fvHZ"><span id="resOutput" data-page-node-id="KMnVIEYqjPMQgZh6kkhwX4">0</span> <span class="text-xl font-medium text-slate-400" data-page-node-id="AR83JCtYrC3AxMbJI6RI9N">MB</span></div>
                             </div>
                         </div>
 
                         <!-- 详细步骤 -->
-                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
-                            <h4 class="text-sm font-semibold text-slate-700 mb-3 uppercase tracking-wider">计算过程详解</h4>
-                            <ol class="space-y-3 text-sm text-slate-600 list-decimal list-inside marker:text-primary marker:font-bold">
-                                <li id="step1">将 GB 转换为 MB: <span class="font-mono bg-white px-1 rounded border border-slate-200">0 × 1024 = 0 MB</span></li>
-                                <li id="step2">计算所需柱面数: <span class="font-mono bg-white px-1 rounded border border-slate-200">ceil(0 / 7.844238) = 0</span></li>
-                                <li id="step3">反推精确 MB 值: <span class="font-mono bg-white px-1 rounded border border-slate-200 text-primary font-bold">0 × 7.844238 ≈ 0 MB</span></li>
+                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-100" data-page-node-id="ePqxFGk2lgypLBL98F7qmj">
+                            <h4 class="text-sm font-semibold text-slate-700 mb-3 uppercase tracking-wider" data-page-node-id="UIodAYM1B5YDhPADHyegNG">计算过程详解</h4>
+                            <ol class="space-y-3 text-sm text-slate-600 list-decimal list-inside marker:text-primary marker:font-bold" data-page-node-id="bECRwowCruBXRSo4EyQVAV">
+                                <li id="step1" data-page-node-id="bCwlrKU0l2b2Hi1bEA2Ubs">将 GB 转换为 MB: <span class="font-mono bg-white px-1 rounded border border-slate-200" data-page-node-id="b5YXuzAOaGbufxIj9TieUO">0 × 1024 = 0 MB</span></li>
+                                <li id="step2" data-page-node-id="MPiSCP8HFcRUTTKO71S6zB">计算所需柱面数: <span class="font-mono bg-white px-1 rounded border border-slate-200" data-page-node-id="3yEPY46HysMyQCynUlGgMG">ceil(0 / 7.844238) = 0</span></li>
+                                <li id="step3" data-page-node-id="QvyDlrXvccsWA3XNbhVFHN">反推精确 MB 值: <span class="font-mono bg-white px-1 rounded border border-slate-200 text-primary font-bold" data-page-node-id="NcUD5qehuPWKVPUmpELeiK">0 × 7.844238 ≈ 0 MB</span></li>
                             </ol>
                         </div>
 
-                        <div class="mt-6 flex justify-end">
-                            <button onclick="copyResult()" class="text-sm text-primary hover:text-blue-700 font-medium flex items-center gap-2 transition-colors">
-                                <i class="fa-regular fa-copy"></i> 复制结果数值
+                        <div class="mt-6 flex justify-end" data-page-node-id="HDfslresLySnNas2UCAvR7">
+                            <button onclick="copyResult()" class="text-sm text-primary hover:text-blue-700 font-medium flex items-center gap-2 transition-colors" data-page-node-id="49ZS2K3y8Yb29DctS0ZnzE">
+                                <i class="fa-regular fa-copy" data-page-node-id="midstVLZCE4VaX74OcqwHo"></i> 复制结果数值
                             </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- 初始状态占位图 -->
-                <div id="emptyState" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-12 flex flex-col items-center justify-center text-center h-full min-h-[400px]">
-                    <div class="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-calculator text-4xl text-primary opacity-50"></i>
+                <div id="emptyState" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-12 flex flex-col items-center justify-center text-center h-full min-h-[400px]" data-page-node-id="C5Z4d3xTV6Abj6115KJoE5">
+                    <div class="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center mb-6" data-page-node-id="5gEDQ63jZCFI4i3vEfbOKY">
+                        <i class="fa-solid fa-calculator text-4xl text-primary opacity-50" data-page-node-id="6RaID0xrUbI4sgOdt46hKI"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">等待输入</h3>
-                    <p class="text-slate-500 max-w-xs mx-auto">在左侧输入您想要的分区大小（GB），系统将自动为您计算符合整数分区规则的 MB 值。</p>
-                </div>
-
-                <!-- 历史记录 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-md font-semibold text-slate-800">
-                            <i class="fa-solid fa-clock-rotate-left mr-2 text-secondary"></i>最近计算记录
-                        </h3>
-                        <button onclick="clearHistory()" class="text-xs text-red-400 hover:text-red-600 transition-colors">清空记录</button>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left text-slate-600">
-                            <thead class="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-100">
-                                <tr>
-                                    <th scope="col" class="px-4 py-3 rounded-l-lg">时间</th>
-                                    <th scope="col" class="px-4 py-3">输入 (GB)</th>
-                                    <th scope="col" class="px-4 py-3">结果 (MB)</th>
-                                    <th scope="col" class="px-4 py-3 rounded-r-lg text-right">操作</th>
-                                </tr>
-                            </thead>
-                            <tbody id="historyList" class="divide-y divide-slate-100">
-                                <!-- 动态插入 -->
-                                <tr class="bg-white hover:bg-slate-50 transition-colors">
-                                    <td colspan="4" class="px-4 py-8 text-center text-slate-400 italic">暂无历史记录</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2" data-page-node-id="BFNYu96iniC4RSj197BOSa">等待输入</h3>
+                    <p class="text-slate-500 max-w-xs mx-auto" data-page-node-id="FzQfJMR0pdCkARXFv0sRk1">在左侧输入您想要的分区大小（GB），系统将自动为您计算符合整数分区规则的 MB 值。</p>
                 </div>
 
             </div>
@@ -275,19 +247,19 @@
     </main>
 
     <!-- 页脚 -->
-    <footer class="bg-white border-t border-slate-200 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-slate-500 text-sm">© 2026 整数磁盘分区计算器. All rights reserved.</p>
-            <div class="flex space-x-6 text-sm text-slate-500">
-                <a href="#" class="hover:text-primary">使用帮助</a>
-                <a href="#" class="hover:text-primary">隐私政策</a>
-                <a href="#" class="hover:text-primary">联系我们</a>
+    <footer class="bg-white border-t border-slate-200 mt-auto" data-page-node-id="AG3IKAZzfUSnQsnXDbFyvL">
+        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4" data-page-node-id="JojvAUsvrBAzEND8syAbjv">
+            <p class="text-slate-500 text-sm" data-page-node-id="IKFxjOeuwn51aL3HpiywB8">© 2026 整数磁盘分区计算器. All rights reserved.</p>
+            <div class="flex space-x-6 text-sm text-slate-500" data-page-node-id="R6Ytpgnm86H1JavlMbV0uE">
+                <a href="#" class="hover:text-primary" data-page-node-id="Kp5P0Y9d4yrXfCwlOzL1L7">使用帮助</a>
+                <a href="#" class="hover:text-primary" data-page-node-id="PQjBDwHQHwsECuJJedxZ8E">隐私政策</a>
+                <a href="#" class="hover:text-primary" data-page-node-id="T1HS4tOyHOAMqCEdZvCCdl">联系我们</a>
             </div>
         </div>
     </footer>
 
     <!-- Toast 提示容器 -->
-    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2"></div>
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2" data-page-node-id="jxYmiBeVE8oNfwbVdQq2tD"></div>
 
     <script>
         // 常量定义
@@ -297,11 +269,11 @@
         const gbInput = document.getElementById('gbInput');
         const resultCard = document.getElementById('resultCard');
         const emptyState = document.getElementById('emptyState');
-        const historyList = document.getElementById('historyList');
         
         // 初始化
         document.addEventListener('DOMContentLoaded', () => {
-            loadHistory();
+            // 清理旧版本遗留的历史记录数据（模块已移除，过渡期后可删除此行）
+            localStorage.removeItem('partition_history');
             // 如果有上次输入，恢复它
             const lastInput = localStorage.getItem('last_gb_input');
             if(lastInput) {
@@ -354,9 +326,6 @@
             // 更新UI
             updateResultUI(gbVal, finalMB, totalMB, cylinders);
             
-            // 添加到历史
-            addToHistory(gbVal, finalMB);
-            
             // 显示结果区
             emptyState.classList.add('hidden');
             resultCard.classList.remove('hidden');
@@ -386,58 +355,6 @@
             }).catch(err => {
                 showToast('复制失败', 'error');
             });
-        }
-
-        // 历史记录管理
-        function addToHistory(gb, mb) {
-            let history = JSON.parse(localStorage.getItem('partition_history') || '[]');
-            const newItem = {
-                id: Date.now(),
-                time: new Date().toLocaleTimeString(),
-                gb: gb,
-                mb: mb
-            };
-            
-            // 保持最近10条
-            history.unshift(newItem);
-            if(history.length > 10) history.pop();
-            
-            localStorage.setItem('partition_history', JSON.stringify(history));
-            renderHistory(history);
-        }
-
-        function loadHistory() {
-            const history = JSON.parse(localStorage.getItem('partition_history') || '[]');
-            renderHistory(history);
-        }
-
-        function clearHistory() {
-            localStorage.removeItem('partition_history');
-            renderHistory([]);
-            showToast('历史记录已清空', 'info');
-        }
-
-        function renderHistory(history) {
-            if (history.length === 0) {
-                historyList.innerHTML = `
-                    <tr class="bg-white hover:bg-slate-50 transition-colors">
-                        <td colspan="4" class="px-4 py-8 text-center text-slate-400 italic">暂无历史记录</td>
-                    </tr>`;
-                return;
-            }
-
-            historyList.innerHTML = history.map(item => `
-                <tr class="bg-white hover:bg-slate-50 transition-colors group">
-                    <td class="px-4 py-3 font-mono text-xs text-slate-400">${item.time}</td>
-                    <td class="px-4 py-3 font-medium text-slate-700">${item.gb} GB</td>
-                    <td class="px-4 py-3 text-primary font-bold">${item.mb} MB</td>
-                    <td class="px-4 py-3 text-right">
-                        <button onclick="setGB(${item.gb})" class="text-slate-400 hover:text-primary transition-colors" title="重新计算">
-                            <i class="fa-solid fa-rotate-right"></i>
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
         }
 
         // Toast 提示系统
